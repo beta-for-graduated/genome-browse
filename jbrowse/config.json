@@ -1,0 +1,65 @@
+{
+  "assemblies": [
+    {
+      "name": "hg19",
+      "sequence": {
+        "type": "ReferenceSequenceTrack",
+        "trackId": "refseq_track",
+        "adapter": {
+          "type": "IndexedFastaAdapter",
+          "fastaLocation": {
+            "uri": "http://localhost:3000/data/kobovatagenomev1.fa"
+          },
+          "faiLocation": {
+            "uri": "http://localhost:3000/data/kobovatagenomev1.fa.fai"
+          }
+        }
+      },
+      "rendering": {
+        "type": "DivSequenceRenderer"
+      }
+    }
+  ],
+  "tracks": [
+    {
+      "type": "BasicTrack",
+      "trackId": "miRNA.gff3",
+      "name": "miRNA.gff3",
+      "assemblyNames": [
+        "hg19"
+      ],
+      "adapter": {
+        "type": "Gff3TabixAdapter",
+        "gffGzLocation": {
+          "uri": "http://localhost:3000/data/miRNA.gff3.gz"
+        },
+        "index": {
+          "location": {
+            "uri": "http://localhost:3000/data/miRNA.gff3.gz.tbi"
+          },
+          "indexType": "TBI"
+        }
+      }
+    },
+    {
+      "type": "BasicTrack",
+      "trackId": "snRNA.gff3",
+      "name": "snRNA.gff3",
+      "assemblyNames": [
+        "hg19"
+      ],
+      "adapter": {
+        "type": "Gff3TabixAdapter",
+        "gffGzLocation": {
+          "uri": "http://localhost:3000/data/snRNA.gff3.gz"
+        },
+        "index": {
+          "location": {
+            "uri": "http://localhost:3000/data/snRNA.gff3.gz.tbi"
+          },
+          "indexType": "TBI"
+        }
+      }
+    }
+  ]
+}
