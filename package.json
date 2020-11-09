@@ -4,13 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "serve": "node app.js"
+    "serve": "node index.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.17.1",
-    "ftp": "^0.3.10"
+    "express": "^4.17.1"
   }
 }

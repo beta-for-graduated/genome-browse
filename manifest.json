@@ -1,0 +1,10 @@
+{
+  "jbrowse": {
+    "port": 8080,
+    "location": "./jbrowse"
+  },
+  "data": {
+    "port": 8081,
+    "location": "./data"
+  }
+}

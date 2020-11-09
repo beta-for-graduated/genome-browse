@@ -8,10 +8,10 @@
         "adapter": {
           "type": "IndexedFastaAdapter",
           "fastaLocation": {
-            "uri": "http://localhost:3000/data/kobovatagenomev1.fa"
+            "uri": "http://localhost:8081/kobovatagenomev1.fa"
           },
           "faiLocation": {
-            "uri": "http://localhost:3000/data/kobovatagenomev1.fa.fai"
+            "uri": "http://localhost:8081/kobovatagenomev1.fa.fai"
           }
         }
       },
@@ -31,11 +31,11 @@
       "adapter": {
         "type": "Gff3TabixAdapter",
         "gffGzLocation": {
-          "uri": "http://localhost:3000/data/miRNA.gff3.gz"
+          "uri": "http://localhost:8081/miRNA.gff3.gz"
         },
         "index": {
           "location": {
-            "uri": "http://localhost:3000/data/miRNA.gff3.gz.tbi"
+            "uri": "http://localhost:8081/miRNA.gff3.gz.tbi"
           },
           "indexType": "TBI"
         }
@@ -51,11 +51,91 @@
       "adapter": {
         "type": "Gff3TabixAdapter",
         "gffGzLocation": {
-          "uri": "http://localhost:3000/data/snRNA.gff3.gz"
+          "uri": "http://localhost:8081/snRNA.gff3.gz"
         },
         "index": {
           "location": {
-            "uri": "http://localhost:3000/data/snRNA.gff3.gz.tbi"
+            "uri": "http://localhost:8081/snRNA.gff3.gz.tbi"
+          },
+          "indexType": "TBI"
+        }
+      }
+    },
+    {
+      "type": "BasicTrack",
+      "trackId": "tRNA.sorted.gff3",
+      "name": "tRNA.sorted.gff3",
+      "assemblyNames": [
+        "hg19"
+      ],
+      "adapter": {
+        "type": "Gff3TabixAdapter",
+        "gffGzLocation": {
+          "uri": "http://localhost:8081/tRNA.sorted.gff3.gz"
+        },
+        "index": {
+          "location": {
+            "uri": "http://localhost:8081/tRNA.sorted.gff3.gz.tbi"
+          },
+          "indexType": "TBI"
+        }
+      }
+    },
+    {
+      "type": "BasicTrack",
+      "trackId": "rRNA.sorted.gff3",
+      "name": "rRNA.sorted.gff3",
+      "assemblyNames": [
+        "hg19"
+      ],
+      "adapter": {
+        "type": "Gff3TabixAdapter",
+        "gffGzLocation": {
+          "uri": "http://localhost:8081/rRNA.sorted.gff3.gz"
+        },
+        "index": {
+          "location": {
+            "uri": "http://localhost:8081/rRNA.sorted.gff3.gz.tbi"
+          },
+          "indexType": "TBI"
+        }
+      }
+    },
+    {
+      "type": "BasicTrack",
+      "trackId": "trf.sorted.gff3",
+      "name": "trf.sorted.gff3",
+      "assemblyNames": [
+        "hg19"
+      ],
+      "adapter": {
+        "type": "Gff3TabixAdapter",
+        "gffGzLocation": {
+          "uri": "http://localhost:8081/trf.sorted.gff3.gz"
+        },
+        "index": {
+          "location": {
+            "uri": "http://localhost:8081/trf.sorted.gff3.gz.tbi"
+          },
+          "indexType": "TBI"
+        }
+      }
+    },
+    {
+      "type": "BasicTrack",
+      "trackId": "all_without_trf.sorted.gff3",
+      "name": "all_without_trf.sorted.gff3",
+      "assemblyNames": [
+        "hg19"
+      ],
+      "adapter": {
+        "type": "Gff3TabixAdapter",
+        "gffGzLocation": {
+          "uri": "http://localhost:8081/all_without_trf.sorted.gff3.gz"
+        },
+        "index": {
+          "location": {
+            "uri": "http://localhost:8081/all_without_trf.sorted.gff3.gz.tbi"
           },
           "indexType": "TBI"
         }
