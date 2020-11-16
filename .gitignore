@@ -3,10 +3,6 @@
 node_modules
 
 blast
-
-jbrowse/*
-!jbrowse/config.json
-
+jbrowse
 data
-
 .next

@@ -1,22 +1,25 @@
 const fs = require('fs');
+const process = require('process');
 const child_exec = require('child_process')
 const fileNames = fs.readdirSync('C:/Documents/Repos/genome-browse/data')
 
-// firstly add-assembly
+// this script can accept an argument as the root path of data service
+const rootPath = process.argv[2] || 'http://localhost:8081';
+
+// firstly add assembly, ensuring that track can be add successfully
 fileNames.map(fileName => {
   if(fileName.endsWith('fa')){
     child_exec.execSync(
-      `jbrowse add-assembly http://localhost:8081/${fileName} -f`
+      `jbrowse add-assembly ${rootPath}/${fileName} -f`
     );
     console.log(`Assembly ${fileName} has been added`)
   }
 })
 
-// secondly add-track
 fileNames.map(fileName => {
   if(fileName.endsWith('gff3.gz')){
     child_exec.execSync(
-      `jbrowse add-track http://localhost:8081/${fileName} -f`
+      `jbrowse add-track ${rootPath}/${fileName} -f`
     )
     console.log(`Track ${fileName} has been added`)
   }
