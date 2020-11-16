@@ -1,7 +1,12 @@
+.idea
+.vscode
 node_modules
+
+blast
 
 jbrowse/*
 !jbrowse/config.json
 
 data
 
+.next
