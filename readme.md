@@ -21,14 +21,3 @@ npm run build & npm run start
 node scripts/deploy_jbrowse.js
 ```
 
-## Preprocess genome data
-
-### Generate index of fasta file
-```sh
-samtools faidx input.fa
-```
-
-### Sort gff file
-```sh
-(grep ^"#" in.gff3; grep -v ^"#" in.gff3 | sort -k1,1 -k4,4n) > out.sorted.gff3
-```
