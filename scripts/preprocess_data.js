@@ -2,9 +2,10 @@ const process = require('process');
 const child_exec = require('child_process');
 
 const DATA_FILE = process.argv[2];
-const DATA_NAME = DATA_FILE.match(/[^\.]+/)[0]
+const DATA_NAME = DATA_FILE.match(/[^\.]+/)[0];
 
-if (DATA_FILE.endsWith('gff' || DATA_FILE.endsWith('gff3'))){
+if (DATA_FILE.endsWith('gff') || DATA_FILE.endsWith('gff3')){
+  console.log(DATA_FILE)
   preprocessGff();
 }else if(DATA_FILE.endsWith('fa')){
   preprocessFasta();
