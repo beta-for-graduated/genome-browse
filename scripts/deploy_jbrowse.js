@@ -22,13 +22,16 @@ function getFileUrl (dirName, fileName) {
 // Use jbrowse-cli to add assembly and track
 function addAssembly (fileUrl, assemblyName) {
   child_exec.execSync(
-    `jbrowse add-assembly ${fileUrl} -f`
+    `jbrowse add-assembly ${fileUrl} -n ${assemblyName} -f`
   );
   console.log(`Assembly ${fileUrl} has been added`)
 }
 
 function addFastaTrack (fileUrl, assemblyName) {
-  // TODO add .fa track
+  child_exec.execSync(
+    `jbrowse add-track ${fileUrl} -t AlignmentsTrack -a ${assemblyName} -f`
+  )
+  console.log(`Track ${fileUrl} has been added`)
 }
 
 function addGffTrack (fileUrl, assemblyName) {
@@ -40,23 +43,39 @@ function addGffTrack (fileUrl, assemblyName) {
 
 
 // Deploy genome data into config.json
-function generateDeployer (extName, deployer) {
+/**
+ * @param {(fileName:string, assemblyName:string)=>boolean} validater 
+ * @param {(fileUrl:string, assemblyName:string)=>void} adder
+ * @returns {(assemblyName:string)=>string} 
+ */
+function generateDeployer (validater, adder) {
   return function (assemblyName) {
     getFileNames(assemblyName)
-    .filter(fileName => fileName.endsWith(extName))
-    .map(fileName => deployer(getFileUrl(assemblyName,fileName), assemblyName));
+      .filter(fileName => validater(fileName, assemblyName))
+      .map(fileName => adder(getFileUrl(assemblyName,fileName), assemblyName));
+    return assemblyName;
   }
 }
 
 function deployAllData () {
-  // Assembly must be added before tracks
-  const deployers = [
-    generateDeployer('fa', addAssembly),
-    generateDeployer('gff3.gz', addGffTrack)
-  ];
+  const deployerGroup = [
+    generateDeployer(
+      (fileName, assemblyName)=>fileName.endsWith('fa') && fileName.startsWith(assemblyName), 
+      addAssembly
+    ),
+    generateDeployer(
+      (fileName, assemblyName)=>fileName.endsWith('fa') && !fileName.startsWith(assemblyName),
+      addFastaTrack
+    ),
+    generateDeployer(
+      fileName => fileName.endsWith('gff.gz') || fileName.endsWith('gff3.gz'),
+      addGffTrack
+    )
+  ]
   getAssemblyNames()
   .map(assemblyName => {
-    deployers.forEach(deploy => deploy(assemblyName));
+    // Assembly must be added before tracks
+    deployerGroup.forEach(deployer => deployer(assemblyName));
   })
 }
 

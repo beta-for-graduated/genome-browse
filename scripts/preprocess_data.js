@@ -18,13 +18,14 @@ function preprocessFasta () {
 }
 
 function preprocessGff () {
-  // delete all blank lines
+  // delete blank lines
   child_exec.execSync(
     `sed '/^$/d' ${DATA_FILE} > ${DATA_NAME}.clean.gff3`
   )
   // sort
   child_exec.execSync(
-    `(grep ^"#" ${DATA_NAME}.clean.gff3; grep -v ^"#" ${DATA_NAME}.clean.gff3 | sort -k1,1 -k4,4n) > ${DATA_NAME}.sorted.gff3`);
+    `(grep ^"#" ${DATA_NAME}.clean.gff3; grep -v ^"#" ${DATA_NAME}.clean.gff3 | sort -k1,1 -k4,4n) > ${DATA_NAME}.sorted.gff3`
+  );
   child_exec.execSync(
     `bgzip ${DATA_NAME}.sorted.gff3`
   );
