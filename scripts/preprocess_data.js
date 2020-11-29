@@ -1,41 +1,23 @@
 const process = require('process');
 const fs = require('fs');
 const path = require('path');
-const child_exec = require('child_process');
-
-// const child_exec = {
-//   execSync () {}
-// }
+const processFasta = require('../utils/processFasta');
+const processGff = require('../utils/processGff');
 
 const DATA_DIR = process.argv[2] || path.join(process.cwd(), 'data');
 const processorGroup = [preprocessFasta, preprocessGff];
 
 function preprocessFasta (fileName) {
-  if(/\.f[^\.]+$/.test(fileName)){
-    child_exec.execSync(
-      `samtools faidx ${fileName}`
-    );
+  if(/\.fa(s(t(a?)?)?)$/.test(fileName)){
+    fs.renameSync(fileName, fileName.replace(/\.[^\.]+$/, '.fa'));
+    processFasta(fileName);
     console.log(`FASTA: ${fileName} process finished`);
   }
 }
 
 function preprocessGff (fileName) {
-  if(/\.gff[^\.]+$/.test(fileName)){
-    const dataName = fileName.match(/[^\.]+/)[0];
-    // delete blank lines
-    child_exec.execSync(
-      `sed '/^$/d' ${fileName} > ${dataName}.clean.gff3`
-    )
-    // sort
-    child_exec.execSync(
-      `(grep ^"#" ${dataName}.clean.gff3; grep -v ^"#" ${dataName}.clean.gff3 | sort -k1,1 -k4,4n) > ${dataName}.sorted.gff3`
-    );
-    child_exec.execSync(
-      `bgzip ${dataName}.sorted.gff3`
-    );
-    child_exec.execSync(
-      `tabix -p gff ${dataName}.sorted.gff3.gz`
-    );
+  if(/\.gff3?+$/.test(fileName)){
+    processGff(fileName);
     console.log(`GFF: ${fileName} process finished`);
   }
 

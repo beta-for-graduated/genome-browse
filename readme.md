@@ -18,8 +18,7 @@ npm run build & npm run start
 
 ### Preprocess genome data
 ```sh
-cd data/assemblyName
-node ../../scripts/preprocess_data.js [fileName]
+node scripts/preprocess_data.js [dataDir]
 ```
 
 ### Deploy data on genome visualization
@@ -27,5 +26,5 @@ node ../../scripts/preprocess_data.js [fileName]
 node scripts/deploy_jbrowse.js [baseURL] [localPath]
 ```
 
-## Data dir
-For different orignism, you should put genome data into different folders whose name must be the name of main assembly.
+## Add genome data
+In the "data" folder, each assembly and its tracks file are put in common folder whose name is the same as the assembly file. So, if you want to create a new assembly, you should create new folder under "data", whose name is the name of assembly, and put all track files and assembly file into it. Then, you can run preprocess and deploy scripts.

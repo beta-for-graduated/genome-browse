@@ -60,15 +60,15 @@ function generateDeployer (validater, adder) {
 function deployAllData () {
   const deployerGroup = [
     generateDeployer(
-      (fileName, assemblyName)=>fileName.endsWith('fa') && fileName.startsWith(assemblyName), 
+      (fileName, assemblyName)=>new RegExp(`^${assemblyName}\.fa$`).test(fileName), 
       addAssembly
     ),
     generateDeployer(
-      (fileName, assemblyName)=>fileName.endsWith('fa') && !fileName.startsWith(assemblyName),
+      (fileName, assemblyName)=>/\.fa$/.test(fileName) && !fileName.startsWith(assemblyName),
       addFastaTrack
     ),
     generateDeployer(
-      fileName => fileName.endsWith('gff.gz') || fileName.endsWith('gff3.gz'),
+      fileName => /\.gff3?\.gz$/.test(fileName),
       addGffTrack
     )
   ]
