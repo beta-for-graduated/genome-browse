@@ -1,37 +1,53 @@
 const process = require('process');
+const fs = require('fs');
+const path = require('path');
 const child_exec = require('child_process');
 
-const DATA_FILE = process.argv[2];
-const DATA_NAME = DATA_FILE.match(/[^\.]+/)[0];
+// const child_exec = {
+//   execSync () {}
+// }
 
-if (DATA_FILE.endsWith('gff') || DATA_FILE.endsWith('gff3')){
-  console.log(DATA_FILE)
-  preprocessGff();
-}else if(DATA_FILE.endsWith('fa')){
-  preprocessFasta();
+const DATA_DIR = process.argv[2] || path.join(process.cwd(), 'data');
+const processorGroup = [preprocessFasta, preprocessGff];
+
+function preprocessFasta (fileName) {
+  if(/\.f[^\.]+$/.test(fileName)){
+    child_exec.execSync(
+      `samtools faidx ${fileName}`
+    );
+    console.log(`FASTA: ${fileName} process finished`);
+  }
 }
 
-function preprocessFasta () {
-  child_exec.execSync(
-    `samtools faidx ${DATA_FILE}`
-  )
+function preprocessGff (fileName) {
+  if(/\.gff[^\.]+$/.test(fileName)){
+    const dataName = fileName.match(/[^\.]+/)[0];
+    // delete blank lines
+    child_exec.execSync(
+      `sed '/^$/d' ${fileName} > ${dataName}.clean.gff3`
+    )
+    // sort
+    child_exec.execSync(
+      `(grep ^"#" ${dataName}.clean.gff3; grep -v ^"#" ${dataName}.clean.gff3 | sort -k1,1 -k4,4n) > ${dataName}.sorted.gff3`
+    );
+    child_exec.execSync(
+      `bgzip ${dataName}.sorted.gff3`
+    );
+    child_exec.execSync(
+      `tabix -p gff ${dataName}.sorted.gff3.gz`
+    );
+    console.log(`GFF: ${fileName} process finished`);
+  }
+
 }
 
-function preprocessGff () {
-  // delete blank lines
-  child_exec.execSync(
-    `sed '/^$/d' ${DATA_FILE} > ${DATA_NAME}.clean.gff3`
-  )
-  // sort
-  child_exec.execSync(
-    `(grep ^"#" ${DATA_NAME}.clean.gff3; grep -v ^"#" ${DATA_NAME}.clean.gff3 | sort -k1,1 -k4,4n) > ${DATA_NAME}.sorted.gff3`
-  );
-  child_exec.execSync(
-    `bgzip ${DATA_NAME}.sorted.gff3`
-  );
-  child_exec.execSync(
-    `tabix -p gff ${DATA_NAME}.sorted.gff3.gz`
-  );
-}
-
+fs.readdirSync(DATA_DIR).forEach(assemblyName => {
+  let assemblyDir = path.join(DATA_DIR, assemblyName);
+  process.chdir(assemblyDir);
+  console.log(`Assembly ${assemblyDir} started.`);
+  fs.readdirSync(assemblyDir).forEach(fileName => {
+    processorGroup.forEach(processor => processor(fileName));
+  });
+  console.log(`Assembly ${assemblyDir} finished.\n`);
+})
 
