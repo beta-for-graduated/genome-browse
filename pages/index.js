@@ -1,5 +1,4 @@
 import { Menu } from 'antd'
-import Blast from '../components/Blast'
 import Jbrowse from '../components/Jbrowse'
 import Home from '../components/Home'
 import Download from '../components/Download'
@@ -8,11 +7,14 @@ import { Fragment,createElement,useState } from 'react'
 import utilStyles from '../styles/utils.module.css'
 
 
-const contents = {Home, Blast, Jbrowse, Download, Manual}
+const contents = {
+  names: ["Introduction", "Genome browser", "Data download", "Manual"],
+  components: [Home, Jbrowse, Download, Manual]
+}
 
 export default function App() {
-  const [currentItem, changeItem] = useState('Home')
-  const menuItems = Object.keys(contents)
+  const [currentItem, changeItem] = useState("Introduction")
+  const menuItems = contents.names;
   const handleClick = e => {changeItem(e.key)}
   return (
     <Fragment>
@@ -35,5 +37,6 @@ export default function App() {
 }
 
 function Content ( {title} ) {
-  return createElement(contents[title])
+  let index = contents.names.indexOf(title);
+  return createElement(contents.components[index])
 }
