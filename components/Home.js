@@ -1,24 +1,51 @@
+import {container, topImage, title, intro, websiteFunc, copyright} from '../styles/home.module.css'
+
 export default function Home () {
-  return <p>
-    The cultivated rice, Oryza sativa L., is one of the major food sources for the world and a model organism in plant biology. The rice pan-genome, the genome of rice species rather than an individual, has been constructed from 3K rice genomes with a medium sequencing coverage about 15X. This pan-genome contains ~370Mbp IRGSP genome and ~260Mbp novel sequences, which are almost the same size as an individual rice genome.
-
-    This database provides:
-
-    Basic information of 3,010 rice accessions
-    Sequences and gene annotations for the rice pan-genome
-    Gene presence-absence variations (PAVs) of rice accessions
-    Expression profiles for rice pan-genome
-    This database also provides:
-
-    Basic search functions:
-    Search a single gene to obtain its basic information, distributions, PAVs and gene functions
-    Search a single rice to obtain its sequencing landscape and meta-information (source, classification, etc.)
-    Search sequence(s) against pan-genome sequences
-    Advanced search functions:
-    Search multiple rice accessions to obtain their shared genes
-    Search multiple genes to obtain rice accessions where they all present
-    Visualization functions:
-    A tree browser to view the phylogeny of 3K rice accessions
-    A genome browser to view gene annotation and presence-absence variations (PAVs)
-  </p>
+  return (
+    <div className={container}>
+      <img className={topImage} src="/mangrove.jpg"></img>
+      <div className={title}>
+        Mangrove Genome Browser
+      </div>
+      <br></br>
+      <div className={intro}>
+        <p>
+          Welcome!
+          <br></br>
+          Mangroves are salt-tolerant trees, also called halophytes, and are adapted to life in harsh coastal 
+          conditions. They contain a complex salt filtration system and complex root system to cope with salt 
+          water immersion and wave action. They are adapted to the low oxygen conditions of waterlogged mud.
+          Mangrove swamps protect coastal areas from erosion, storm surge (especially during hurricanes), 
+          providing measurable economic protections to coastal communities to tropical storm impacted 
+          communities globally, and tsunamis. Besides, mangroves are an important source of blue carbon.So,
+          we build this website to help research and analysis for mangrove genome.
+        </p>
+        <br></br>
+        <p>
+          This website provides service as following:
+          <br></br>
+          <p className={websiteFunc}>
+          1. Visualization for sequences and gene annotations.
+          <br></br>
+          2. Download service.
+          <br></br>
+          3. Search relational genome sequences.
+          </p> 
+        </p>
+        <br></br>
+        <p>
+          If you don’t know how to use genome browser, switch to the ‘Manual’ channal where examples are 
+          provided, or you can see <a href="https://jbrowse.org/jb2/">https://jbrowse.org/jb2/</a> for help.
+        </p>
+      </div>
+      <br></br>
+      <br></br>
+      <br></br>
+      <br></br>
+      <br></br>
+      <div className={copyright}>
+        Copyright © 2009 Key Laboratory of the Ministry of Education for Coastal and Wetland Ecosystems
+      </div>
+    </div>
+  )
 }
