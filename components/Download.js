@@ -7,10 +7,12 @@ const treeData = manifest.data.download;
 
 export default function Download () {
   const onSelect = (keys, { node }) => {
-    var a = document.createElement('a');
-    a.href = node.url;
-    a.download = node.title;
-    a.click();
+    if(node.title.includes('.')){
+      let a = document.createElement('a');
+      a.href = node.url;
+      a.download = node.title;
+      a.click();
+    }
   };
 
   const onExpand = () => {
