@@ -1,10 +1,13 @@
-const fs = require('fs');
-const process = require('process');
-const child_exec = require('child_process');
+const fs = require('fs'),
+process = require('process'),
+child_exec = require('child_process'),
+path = require('path');
+
+const ROOT_PATH = process.cwd();
 
 // Accept baseURL, localPath of genome data cmd arguments
 const DATA_BASE_URL = process.argv[2] || 'http://localhost:8081';
-const DATA_LOCAL_PATH = process.argv[3] || "C:/Documents/Repos/genome-browse/data";
+const DATA_LOCAL_PATH = process.argv[3] || path.join(ROOT_PATH, 'data');
 
 function getAssemblyNames () {
   return fs.readdirSync(DATA_LOCAL_PATH);
@@ -80,7 +83,9 @@ function deployAllData () {
 }
 
 
-// Generate config.json and move to 'jbrowse'
+// Move config.json to jbrowse folder
 deployAllData();
-fs.copyFileSync('C:/Documents/Repos/genome-browse/config.json', 'C:/Documents/Repos/genome-browse/jbrowse/config.json');
-fs.unlinkSync('C:/Documents/Repos/genome-browse/config.json');
+const originPath = path.join(ROOT_PATH, 'config.json');
+const goalPath = path.join(ROOT_PATH, 'jbrowse/config.json');
+fs.copyFileSync(originPath, goalPath);
+fs.unlinkSync(originPath);
