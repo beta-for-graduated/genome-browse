@@ -1,6 +1,9 @@
-const child_exec = require('child_process');
+const child_exec = require('child_process'),
+process = require('process');
 
-module.exports = function (fileName) {
+const fileName = process.argv[2];
+
+function generateGzipAndTabix (fileName) {
   const dataName = fileName.match(/[^\.]+/)[0];
   // delete blank lines
   child_exec.execSync(
@@ -17,3 +20,7 @@ module.exports = function (fileName) {
     `tabix -p gff ${dataName}.sorted.gff3.gz`
   );
 }
+
+generateGzipAndTabix(fileName);
+
+module.exports = generateGzipAndTabix;
