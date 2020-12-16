@@ -9,7 +9,7 @@ export default function Home () {
       </div>
       <br></br>
       <div className={intro}>
-        <p>
+        <div>
           Welcome!
           <br></br>
           Mangroves are salt-tolerant trees, also called halophytes, and are adapted to life in harsh coastal 
@@ -19,24 +19,24 @@ export default function Home () {
           providing measurable economic protections to coastal communities to tropical storm impacted 
           communities globally, and tsunamis. Besides, mangroves are an important source of blue carbon.So,
           we build this website to help research and analysis for mangrove genome.
-        </p>
+        </div>
         <br></br>
-        <p>
+        <div>
           This website provides service as following:
           <br></br>
-          <p className={websiteFunc}>
+          <div className={websiteFunc}>
           1. Visualization for sequences and gene annotations.
           <br></br>
           2. Download service.
           <br></br>
           3. Search relational genome sequences.
-          </p> 
-        </p>
+          </div> 
+        </div>
         <br></br>
-        <p>
+        <div>
           If you don’t know how to use genome browser, switch to the ‘Manual’ channal where examples are 
           provided, or you can see <a href="https://jbrowse.org/jb2/">https://jbrowse.org/jb2/</a> for help.
-        </p>
+        </div>
       </div>
       <br></br>
       <br></br>
