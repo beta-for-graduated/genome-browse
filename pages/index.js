@@ -1,4 +1,7 @@
 import getIP from '../utils/getIP'
+import fs from 'fs'
+import process from 'process'
+import path from 'path'
 import { Menu } from 'antd'
 import { Fragment,createElement,useState } from 'react'
 import Jbrowse from '../components/Jbrowse'
@@ -12,7 +15,7 @@ const contents = {
   components: [Home, Jbrowse, Download, Manual]
 }
 
-export default function App({ localIP }) {
+export default function App({ localIP, userGuide }) {
   const [currentItem, changeItem] = useState("Introduction")
   const menuItems = contents.names;
   const handleClick = e => {changeItem(e.key)}
@@ -29,7 +32,8 @@ export default function App({ localIP }) {
         )}
       </Menu>
       <Content
-      localIP={localIP} 
+      localIP={localIP}
+      userGuide={userGuide} 
       className={content} 
       title={currentItem}>
       </Content>
@@ -38,17 +42,19 @@ export default function App({ localIP }) {
 }
 
 export async function getStaticProps() {
+  const markdownFile = path.join(process.cwd(),'lib/user_guide.md')
   return {
     props: {
-      localIP: getIP()
+      localIP: getIP(),
+      userGuide: fs.readFileSync(markdownFile,'utf8')
     }
   }
 }
 
-function Content ( {title, localIP} ) {
+function Content ( {title, localIP, userGuide} ) {
   let index = contents.names.indexOf(title);
   return createElement(
     contents.components[index],
-    {localIP}
+    {localIP, userGuide}
   )
 }
