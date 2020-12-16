@@ -6,23 +6,12 @@
   "data": {
     "port": 8081,
     "location": "./data",
-    "download": [
+    "public": [
       {
-        "title": "Avicennia_marina",
-        "key": "Avicennia_marina",
-        "children": [
-          {
-            "title": "A.gff3",
-            "key": "A.gff3",
-            "url": "http://localhost:8081/Avicennia_marina/A.gff3",
-            "isLeaf": true
-          },
-          {
-            "title": "Avicennia_marina.fa",
-            "key": "Avicennia_marina.fa",
-            "url": "http://localhost:8081/Avicennia_marina/Avicennia_marina.fa",
-            "isLeaf": true
-          }
+        "folderName": "Avicennia_marina",
+        "files": [
+          "A.gff3",
+          "Avicennia_marina.fa"
         ]
       }
     ]

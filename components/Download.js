@@ -3,7 +3,19 @@ import manifest from '../manifest.json'
 import {download} from '../styles/utils.module.css'
 
 const { DirectoryTree } = Tree;
-const treeData = manifest.data.download;
+const publicAssetsList = manifest.data.public;
+const treeData = publicAssetsList.map(folder => ({
+  title: folder.folderName,
+  key: folder.folderName,
+  children: folder.files.map(fileName => ({
+    title:fileName, 
+    key:fileName,
+    isLeaf: true,
+    url: `http://localhost:8081/${folder.folderName}/${fileName}`
+  }))
+}))
+
+
 
 export default function Download () {
   const onSelect = (keys, { node }) => {
