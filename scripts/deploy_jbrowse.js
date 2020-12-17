@@ -66,11 +66,11 @@ function generateDeployer (validater, adder) {
 function deployAllData () {
   const deployerGroup = [
     generateDeployer(
-      (fileName, assemblyName)=>new RegExp(`^${assemblyName}\.fa$`).test(fileName), 
+      (fileName, assemblyName)=>new RegExp(`^${assemblyName}\.fa[^\.^i]*$`).test(fileName), 
       addAssembly
     ),
     generateDeployer(
-      (fileName, assemblyName)=>/\.fa$/.test(fileName) && !fileName.startsWith(assemblyName),
+      (fileName, assemblyName)=>/\.fa[^\.^i]*$/.test(fileName) && !fileName.startsWith(assemblyName),
       addFastaTrack
     ),
     generateDeployer(

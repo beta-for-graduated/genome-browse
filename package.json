@@ -7,7 +7,8 @@
     "serve": "node serve.js",
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "update_jbrowse": "node scripts/deploy_jbrowse.js"
   },
   "keywords": [],
   "author": "",
