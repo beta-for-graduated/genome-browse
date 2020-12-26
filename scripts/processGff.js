@@ -14,10 +14,10 @@ function generateGzipAndTabix (fileName) {
     `(grep ^"#" ${dataName}.clean.gff3; grep -v ^"#" ${dataName}.clean.gff3 | sort -k1,1 -k4,4n) > ${dataName}.sorted.gff3`
   );
   child_exec.execSync(
-    `bgzip ${dataName}.sorted.gff3`
+    `bgzip -f ${dataName}.sorted.gff3`
   );
   child_exec.execSync(
-    `tabix -p gff ${dataName}.sorted.gff3.gz`
+    `tabix -pf gff ${dataName}.sorted.gff3.gz`
   );
 }
 
