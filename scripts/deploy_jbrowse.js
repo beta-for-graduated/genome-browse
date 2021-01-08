@@ -35,14 +35,14 @@ function addAssembly (fileUrl, assemblyName) {
 
 function addFastaTrack (fileUrl, assemblyName) {
   child_exec.execSync(
-    `jbrowse add-track ${fileUrl} -t AlignmentsTrack -a ${assemblyName} -f`
+    `jbrowse add-track ${fileUrl} -t FeatureTrack -a ${assemblyName} -f`
   )
   console.log(`Track ${fileUrl} has been added`)
 }
 
 function addGffTrack (fileUrl, assemblyName) {
   child_exec.execSync(
-    `jbrowse add-track ${fileUrl} -t AlignmentsTrack -a ${assemblyName} -f`
+    `jbrowse add-track ${fileUrl} -a ${assemblyName} -f`
   )
   console.log(`Track ${fileUrl} has been added`)
 }
