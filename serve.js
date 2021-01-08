@@ -1,7 +1,10 @@
-// provide Data, Jbrowse service
-
+const process = require('process');
 const express = require('express');
 const manifest = require('./manifest.json');
+
+const allowOrigin = process.argv[2] || '*'
+
+console.log(allowOrigin)
 
 for(let serverName in manifest){
   let serverConfig = manifest[serverName];
@@ -10,7 +13,7 @@ for(let serverName in manifest){
   if(serverName==='data'){
     app.use((req, res, next)=>{
       res.set({
-        'Access-Control-Allow-Origin':'*',
+        'Access-Control-Allow-Origin':allowOrigin,
         'Access-Control-Allow-Methods': 'POST, GET, OPTIONS',
         // 'range' header is carried by complex requests (especially FASTA file)
         'Access-Control-Allow-Headers': 'X-PINGOTHER, Content-Type, range',
@@ -23,5 +26,7 @@ for(let serverName in manifest){
   }
   
   app.use(express.static(serverConfig.location));
-  app.listen(serverConfig.port);
+  app.listen(serverConfig.port, ()=>{
+    console.log(`${serverName} listening on ${serverConfig.port}`)
+  });
 }

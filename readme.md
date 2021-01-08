@@ -3,6 +3,10 @@
 To simplyify the development, we divide this project into four parts: main page, genome visualization and download service, deployed at different ports. The main page provides entry points for the other three services, bootstrapped with Next.js. The download service and genome visualization are deployed simply on static servers by Express.js, solving cross-site problems by CORS. And genome visualization is powered by JBrowse2.
 
 ## Available Scripts
+### Launch the whole server
+```sh
+./start.sh [domain]
+```
 
 ### Start data and jbrowse service
 ```sh 
@@ -11,6 +15,7 @@ npm run serve
 
 ### Start main page service
 ```sh
+# development mode
 npm run dev
 # production mode
 npm run build & npm run start

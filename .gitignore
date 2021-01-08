@@ -6,3 +6,5 @@ blast
 jbrowse
 data
 .next
+mainServe.log
+supportServe.log
