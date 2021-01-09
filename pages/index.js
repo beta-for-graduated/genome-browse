@@ -1,4 +1,3 @@
-import getIP from '../utils/getIP'
 import fs from 'fs'
 import process from 'process'
 import path from 'path'
@@ -45,7 +44,7 @@ export async function getStaticProps() {
   const markdownFile = path.join(process.cwd(),'lib/user_guide.md')
   return {
     props: {
-      localIP: getIP(),
+      localIP: process.env.DOMAIN,
       userGuide: fs.readFileSync(markdownFile,'utf8')
     }
   }

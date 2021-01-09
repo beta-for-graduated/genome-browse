@@ -1,7 +1,9 @@
 .idea
 .vscode
 node_modules
+.env.local
 
+logs
 blast
 jbrowse
 data

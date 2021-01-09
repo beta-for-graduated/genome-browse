@@ -1,15 +1,16 @@
+require('../utils/loadLocalEnv')
+
 const fs = require('fs'),
 process = require('process'),
 child_exec = require('child_process'),
 path = require('path'),
-ip = require('../utils/getIP')(),
 manifest = require('../manifest.json');
 const port = manifest.data.port;
 
 const ROOT_PATH = process.cwd();
 
 // Accept baseURL, localPath of genome data cmd arguments
-const DATA_BASE_URL = process.argv[2] || `http://${ip}:${port}`;
+const DATA_BASE_URL = process.argv[2] || `http://${process.env.DOMAIN}:${port}`;
 const DATA_LOCAL_PATH = process.argv[3] || path.join(ROOT_PATH, 'data');
 
 function getAssemblyNames () {
