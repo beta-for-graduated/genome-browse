@@ -1,4 +1,5 @@
 #TODO stop original server
+npm i
 rm -rf logs
 npm run update_jbrowse
 npm run build
