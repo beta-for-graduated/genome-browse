@@ -4,10 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
+    "main_build": "next build",
     "update_jbrowse": "node scripts/deploy_jbrowse.js",
+    "main_dev": "next dev",
+    "main_serve": "next start",
     "data_serve": "node server/data.js",
     "jbrowse_serve": "node server/browser.js"
   },

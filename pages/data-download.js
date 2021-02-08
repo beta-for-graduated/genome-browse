@@ -4,6 +4,14 @@ import {download} from '../styles/utils.module.css'
 const { DirectoryTree } = Tree;
 
 
+export async function getStaticProps() {
+  return {
+    props: {
+      localIP: process.env.DOMAIN,
+    }
+  }
+}
+
 export default function Download ({ localIP }) {
   const publicAssetsList = manifest.data.public;
   const baseURL = `http://${localIP}:${manifest.data.port}`;
@@ -27,16 +35,11 @@ export default function Download ({ localIP }) {
     }
   };
 
-  const onExpand = () => {
-    console.log('Trigger Expand');
-  };
-
   return (
     <div
     className={download}>
       <DirectoryTree
       onSelect={onSelect}
-      onExpand={onExpand}
       treeData={treeData}
       />
     </div>
