@@ -14,6 +14,7 @@ export default function App({ Component, pageProps }) {
     'Introduction': 'introduction',
     'Genome Browser': 'genome-browser', 
     'Data Download': 'data-download',
+	'Searching': 'searching',
     'Manual': 'manual'
   };
   const router = useRouter();
