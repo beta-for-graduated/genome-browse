@@ -17,6 +17,11 @@
   flex: auto;
 }
 
+.blast{
+  border: 0;
+  height: 100%;
+}
+
 .download{
   font-size: 20px;
   width: 80%;

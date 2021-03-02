@@ -13,8 +13,8 @@ export default function App({ Component, pageProps }) {
   const navigators = {
     'Introduction': 'introduction',
     'Genome Browser': 'genome-browser', 
+	  'Searching': 'searching',
     'Data Download': 'data-download',
-	'Searching': 'searching',
     'Manual': 'manual'
   };
   const router = useRouter();
