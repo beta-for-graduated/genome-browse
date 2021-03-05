@@ -1,7 +1,15 @@
-module.exports = function({name, location, port, allowOrigin}) {
-  const express = require('express');
+const express = require('express');
+
+
+const log = require('./printLog');
+
+
+/**
+ * @description launch static server
+ * @param {{name:string, location:string, port:number, allowOrigin:string}} option 
+ */
+function staticServe({name='static server', location, port, allowOrigin='*'}) {
   const app = express();
-  const log = require('./printLog');
   
   app.use(log);
   app.use((req, res, next)=>{
@@ -15,7 +23,9 @@ module.exports = function({name, location, port, allowOrigin}) {
     next();
   })
   app.use(express.static(location));
-  
-  
-  app.listen(port, ()=>console.log(`# ${name} on ${port}`));
+
+  app.listen(port, ()=>console.log(`# ${name} on ${location} is listening at ${port}`));
 }
+
+
+module.exports = staticServe

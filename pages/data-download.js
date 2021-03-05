@@ -1,21 +1,23 @@
 import { Tree } from 'antd'
+
+
 import manifest from '../manifest.json'  
 import {download} from '../styles/utils.module.css'
-const { DirectoryTree } = Tree;
 
 
 export async function getStaticProps() {
   return {
     props: {
-      localIP: process.env.DOMAIN,
+      baseURL: `http://${process.env.DOMAIN}:${process.env.DATA_PORT}`,
     }
   }
 }
 
-export default function Download ({ localIP }) {
-  const publicAssetsList = manifest.data.public;
-  const baseURL = `http://${localIP}:${manifest.data.port}`;
-  const treeData = publicAssetsList.map(folder => ({
+
+export default function Download ({ baseURL }) {
+  const { DirectoryTree } = Tree;
+
+  const treeData = manifest.map(folder => ({
     title: folder.folderName,
     key: folder.folderName,
     children: folder.files.map(fileName => ({

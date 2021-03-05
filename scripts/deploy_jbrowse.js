@@ -1,28 +1,35 @@
+/**
+ * @description generate config.json for jbrowse
+*/
+
+
 require('../utils/loadLocalEnv')
 
+
 const fs = require('fs'),
-process = require('process'),
 child_exec = require('child_process'),
-path = require('path'),
-manifest = require('../manifest.json');
-const port = manifest.data.port;
+path = require('path');
 
-const ROOT_PATH = process.cwd();
 
-// Accept baseURL, localPath of genome data cmd arguments
-const DATA_BASE_URL = process.argv[2] || `http://${process.env.DOMAIN}:${port}`;
-const DATA_LOCAL_PATH = process.argv[3] || path.join(ROOT_PATH, 'data');
+const ROOT_PATH = path.resolve(__dirname, '..'),
+DATA_DIR = path.join(ROOT_PATH, 'data'),
+ORIGINAL_CONFIG_PATH = path.join(ROOT_PATH, 'config.json'),
+TARGET_CONFIG_PATH =  path.join(ROOT_PATH, 'jbrowse','config.json');
+
+
+const BASE_URL = `http://${process.env.DOMAIN}:${process.env.DATA_PORT}`;
+
 
 function getAssemblyNames () {
-  return fs.readdirSync(DATA_LOCAL_PATH);
+  return fs.readdirSync(DATA_DIR);
 }
 
 function getFileNames (dirName) {
-  return fs.readdirSync(`${DATA_LOCAL_PATH}/${dirName}`);
+  return fs.readdirSync(`${DATA_DIR}/${dirName}`);
 }
 
 function getFileUrl (dirName, fileName) {
-  return `${DATA_BASE_URL}/${dirName}/${fileName}`;
+  return `${BASE_URL}/${dirName}/${fileName}`;
 }
 
 
@@ -89,7 +96,5 @@ function deployAllData () {
 
 // Move config.json to jbrowse folder
 deployAllData();
-const originPath = path.join(ROOT_PATH, 'config.json');
-const goalPath = path.join(ROOT_PATH, 'jbrowse/config.json');
-fs.copyFileSync(originPath, goalPath);
-fs.unlinkSync(originPath);
+fs.copyFileSync(ORIGINAL_CONFIG_PATH, TARGET_CONFIG_PATH);
+fs.unlinkSync(ORIGINAL_CONFIG_PATH);

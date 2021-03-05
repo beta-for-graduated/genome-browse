@@ -1,10 +1,15 @@
+require('../utils/loadLocalEnv')
+
+
+const path = require('path')
+
+
 const staticServe = require('../utils/staticServe');
-const {data} = require('../manifest.json');
-const {location, port} = data;
+
 
 staticServe({
-  location,
-  port,
   name: 'Data server',
+  location: path.resolve(__dirname, '..', 'data'),
+  port: Number(process.env.DATA_PORT),
   allowOrigin: '*',
 })

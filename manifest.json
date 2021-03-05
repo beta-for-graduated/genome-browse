@@ -1,50 +1,40 @@
-{
-  "jbrowse": {
-    "port": 8080,
-    "location": "./jbrowse"
+[      
+  {
+    "folderName": "Avicennia_marina",
+    "files": [
+      "A.gff3",
+      "Avicennia_marina.fa",
+      "A.anno",
+      "newA_cds.fa",
+      "newA_pro.fa"
+    ]
   },
-  "data": {
-    "port": 8081,
-    "location": "./data",
-    "public": [
-      {
-        "folderName": "Avicennia_marina",
-        "files": [
-          "A.gff3",
-          "Avicennia_marina.fa",
-          "A.anno",
-          "newA_cds.fa",
-          "newA_pro.fa"
-        ]
-      },
-      {
-        "folderName": "Melastoma_candium",
-        "files":[
-          "Melastoma_candium.fa",
-          "Melastoma_candium_v1.0.gene_exon.gff3"
-        ]
-      },
-      {
-        "folderName": "Rhizophora_apiculata",
-        "files":[
-          "Rhizophora_apiculata.fa",
-          "R.gff3"
-        ]
-      },
-      {
-        "folderName": "Sonneratia_alba",
-        "files":[
-          "Sonneratia_alba.fa",
-          "H.gff3"
-        ]
-      },
-      {
-        "folderName": "Sonneratia_caseolaris",
-        "files":[
-          "Sonneratia_caseolaris.fa",
-          "Sc.gff3"
-        ]
-      }
+  {
+    "folderName": "Melastoma_candium",
+    "files":[
+      "Melastoma_candium.fa",
+      "Melastoma_candium_v1.0.gene_exon.gff3"
+    ]
+  },
+  {
+    "folderName": "Rhizophora_apiculata",
+    "files":[
+      "Rhizophora_apiculata.fa",
+      "R.gff3"
+    ]
+  },
+  {
+    "folderName": "Sonneratia_alba",
+    "files":[
+      "Sonneratia_alba.fa",
+      "H.gff3"
+    ]
+  },
+  {
+    "folderName": "Sonneratia_caseolaris",
+    "files":[
+      "Sonneratia_caseolaris.fa",
+      "Sc.gff3"
     ]
   }
-}
+]
