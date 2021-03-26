@@ -2,7 +2,7 @@ import { Tree } from 'antd'
 
 
 import manifest from '../manifest.json'  
-import {download} from '../styles/utils.module.css'
+import {download, directoryTree} from '../styles/utils.module.css'
 
 
 export async function getStaticProps() {
@@ -38,9 +38,11 @@ export default function Download ({ baseURL }) {
   };
 
   return (
-    <div
-    className={download}>
+    <div className={download}>
+      {/* TODO add copyright */}
+      {/* TODO larger font */}
       <DirectoryTree
+      className={directoryTree}
       onSelect={onSelect}
       treeData={treeData}
       />
