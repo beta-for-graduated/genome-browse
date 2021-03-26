@@ -21,10 +21,6 @@
   font-family: 'Times New Roman', Times, serif;
 }
 
-.copyright{
-  font-size: 0.9rem;
-}
-
 .gallery{
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;

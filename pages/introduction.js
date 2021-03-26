@@ -3,7 +3,6 @@ import {
   topImage, 
   websiteTitle, 
   introduction, 
-  copyright,
   gallery,
   cardInGallery,
   imageInCard,
@@ -90,8 +89,7 @@ export default function Home ({ cards }) {
 
           <h2>Specise collected by the website:</h2>
           <div className={gallery}>
-            {
-              cards.map(picture => 
+            {cards.map(picture => 
               <div key={picture.name} className={cardInGallery}>
                 <i>{picture.name}</i>
                 <img className={imageInCard}
@@ -103,13 +101,8 @@ export default function Home ({ cards }) {
                 onClick={openVisualization(picture.session)} 
                 >
                 </img>
-              </div>)
-            }
+              </div>)}
           </div>
-      </div>
-      <p></p>
-      <div className={copyright}>
-        Copyright © 2009 Key Laboratory of the Ministry of Education for Coastal and Wetland Ecosystems
       </div>
     </div>
   )

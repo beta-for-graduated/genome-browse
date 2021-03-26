@@ -44,8 +44,10 @@ export default function Download ({ baseURL, manifest }) {
 
   return (
     <div className={download}>
-      {/* TODO add copyright */}
-      {/* TODO larger font */}
+      <p>
+        Sequencing results except <i>Kandelia obovata</i> are provided by
+        <a href="http://evolution.sysu.edu.cn/Sequences.html"> Sun Yat-sen University </a>.
+      </p>
       <DirectoryTree
       className={directoryTree}
       onSelect={onSelect}

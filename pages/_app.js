@@ -6,7 +6,7 @@ import { useRouter } from 'next/router'
 
 import '../styles/index.css';
 import 'antd/dist/antd.css';
-import {navigation, content} from '../styles/utils.module.css'
+import {navigation, content, copyright} from '../styles/utils.module.css'
 
 
 export default function App({ Component, pageProps }) {  
@@ -44,5 +44,9 @@ export default function App({ Component, pageProps }) {
     {...pageProps}
     className={content}> 
     </Component>
+    <p></p>
+    <div className={copyright}>
+      Copyright © 2009 Key Laboratory of the Ministry of Education for Coastal and Wetland Ecosystems
+    </div>
   </Fragment>
 }
