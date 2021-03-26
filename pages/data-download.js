@@ -1,20 +1,25 @@
 import { Tree } from 'antd'
+import { readdirSync } from 'fs'
 
 
-import manifest from '../manifest.json'  
 import {download, directoryTree} from '../styles/utils.module.css'
 
 
 export async function getStaticProps() {
+  const manifest = readdirSync('data').map(folderName=>({
+    folderName, 
+    files: readdirSync(`data/${folderName}`)
+  }))
   return {
     props: {
       baseURL: `http://${process.env.DOMAIN}:${process.env.DATA_PORT}`,
+      manifest
     }
   }
 }
 
 
-export default function Download ({ baseURL }) {
+export default function Download ({ baseURL, manifest }) {
   const { DirectoryTree } = Tree;
 
   const treeData = manifest.map(folder => ({
